@@ -1,1 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Tool!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#8B0000;color:#fff;line-height:1.6;padding:20px;position:relative}
+@media(min-width:768px){body{padding:40px}}
+.signature{position:fixed;bottom:10px;right:10px;color:#fff;font-size:10px;opacity:0.5}
+@media(min-width:768px){.signature{bottom:20px;right:20px;font-size:12px}}
+.container{max-width:700px;margin:0 auto}
+.step{margin-bottom:40px}
+h1{font-size:18px;margin-bottom:20px;font-weight:normal;color:#fff}
+.description{color:#fff;margin-bottom:30px;font-size:14px;line-height:1.8}
+.btn{background:transparent;color:#fff;border:1px solid #fff;padding:10px 20px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;margin-right:10px;margin-top:10px;width:100%}
+@media(min-width:600px){.btn{width:auto}}
+.btn:hover{background:rgba(255,255,255,0.1)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.btn-secondary{background:transparent;color:#fff;border:1px solid #fff}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;margin-bottom:8px;font-size:13px;color:#fff}
+select,textarea{width:100%;padding:10px;background:transparent;border:1px solid #fff;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
+select:focus,textarea:focus{outline:none;border-color:#fff}
+textarea::placeholder{color:#fff;opacity:0.6}
+select option{background:#8B0000;color:#fff}
+input[type="checkbox"],input[type="radio"]{width:16px;height:16px;border:1px solid #fff;background:transparent;cursor:pointer;appearance:none;-webkit-appearance:none;margin-right:8px;position:relative;flex-shrink:0}
+input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:12px}
+input[type="radio"]{border-radius:50%}
+input[type="radio"]:checked::after{content:'';position:absolute;top:3px;left:3px;width:8px;height:8px;background:#fff;border-radius:50%}
+.upload-zone{border:1px solid #fff;padding:40px;text-align:center;cursor:pointer;margin-top:20px;color:#fff}
+.upload-zone:hover{border-color:#fff;background:rgba(255,255,255,0.05)}
+.upload-zone input{display:none}
+.file-list{margin-top:20px;font-size:13px}
+.file-item{padding:10px;background:transparent;border:1px solid #fff;margin-bottom:5px;display:flex;justify-content:space-between}
+.transaction-card{background:transparent;color:#fff;padding:15px;margin-bottom:10px;border:1px solid #fff}
+.transaction-card.flagged{border:1px solid #fff}
+.transaction-header{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+@media(min-width:600px){.transaction-header{flex-direction:row;justify-content:space-between;gap:0}}
+.transaction-amount{font-size:18px;font-weight:bold;color:#fff}
+.transaction-question{margin:10px 0 0 0;padding:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2)}
+.radio-group{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+@media(min-width:600px){.radio-group{flex-direction:row;gap:20px}}
+.radio-group label{display:flex;align-items:center;gap:8px;cursor:pointer;color:#fff}
+.checkbox-group{margin-top:10px;font-size:13px;color:#fff;opacity:0.8}
+.summary-box{background:transparent;border:1px solid #fff;padding:30px;margin-top:30px}
+.summary-grid{display:grid;grid-template-columns:1fr;gap:15px;margin-top:20px}
+@media(min-width:600px){.summary-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+.summary-item{padding:15px;background:transparent;border:1px solid #fff}
+.summary-label{font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;opacity:0.7}
+.summary-value{font-size:24px;color:#fff}
+.hidden{display:none}
+.progress-bar{display:none}
+.month-section{margin-bottom:40px;padding:20px;background:transparent;border:1px solid #fff}
+.month-header{font-size:14px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #fff;opacity:0.9}
+.info-box{background:transparent;border:1px solid #fff;padding:15px;margin-top:20px;font-size:12px;color:#fff}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="step1" class="step">
+<h1>Tax Deductions for Creatives</h1>
+<p class="description">Tool built to simplify the tax process for creatives. Input all the information as specifically as possible to make things easier and more accurate.</p>
+<p class="description" style="font-size:12px;margin-top:-15px">All data is processed locally in your browser and nothing is stored or sent anywhere. Your information is completely private and deleted when you close this page.</p>
+<div class="input-group">
+<label>What type of creative work do you do? (Select all that apply)</label>
+<div style="background:transparent;border:1px solid #fff;padding:15px;max-width:400px">
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="photographer"> Photographer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="designer"> Graphic Designer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="writer"> Writer / Copywriter</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="filmmaker"> Filmmaker / Video Producer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="illustrator"> Illustrator</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="web-dev"> Web Developer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="musician"> Musician / Audio Producer</label>
+<label style="display:block;margin-bottom:0;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="other"> Other Creative Professional</label>
+</div>
+</div>
+<div class="input-group">
+<label>Business structure</label>
+<select id="businessStructure">
+<option value="">Select...</option>
+<option value="sole-proprietor">Sole Proprietor - You own the business, report on Schedule C</option>
+<option value="llc">LLC - Limited liability company, separate legal entity</option>
+<option value="s-corp">S-Corp - Corporation with pass-through taxation</option>
+<option value="freelancer">Freelancer / 1099 - Independent contractor receiving 1099 forms</option>
+</select>
+</div>
+<div class="input-group">
+<label>Do you have a dedicated home office space?</label>
+<select id="homeOffice">
+<option value="">Select...</option>
+<option value="yes">Yes, dedicated space</option>
+<option value="partial">Sometimes work from home</option>
+<option value="no">No home office</option>
+</select>
+</div>
+<div class="input-group">
+<label>How often do you meet clients for meals/coffee?</label>
+<select id="clientMeals">
+<option value="">Select...</option>
+<option value="frequent">Frequently (weekly)</option>
+<option value="occasional">Occasionally (monthly)</option>
+<option value="rare">Rarely</option>
+<option value="never">Never</option>
+</select>
+</div>
+<button class="btn" onclick="completeOnboarding()">Continue</button>
+</div>
+<div id="step2" class="step hidden">
+<h1>Upload Your Bank Statements</h1>
+<p style="color:#fff;margin-bottom:20px;font-size:14px">CSV or PDF format.</p>
+<div class="info-box"><strong>How to get your statements:</strong><br>• CSV: Most banks let you download transactions as CSV<br>• PDF: Upload your bank statement PDFs directly</div>
+<div style="margin-top:30px;margin-bottom:20px">
+<label style="display:block;margin-bottom:8px;font-size:13px;color:#fff">Add custom rules (optional)</label>
+<textarea id="customRules" placeholder="Example: RedFin Coffee is always work related. Don't ask about grocery stores. Always ask about dinners." style="width:100%;max-width:600px;min-height:100px;padding:12px;background:transparent;border:1px solid #fff;color:#fff;font-family:'Inter',sans-serif;font-size:14px;resize:vertical"></textarea>
+<div style="font-size:12px;color:#fff;margin-top:8px">Tell the tool about patterns in your spending so it knows what to auto-approve or always ask about.</div>
+</div>
+<div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+<div style="font-size:40px;margin-bottom:15px">[ ]</div>
+<div>Click to select CSV or PDF files</div>
+<div style="margin-top:10px;color:#fff;font-size:12px;opacity:0.7">Select multiple files for all months.</div>
+<input type="file" id="fileInput" accept=".csv,.pdf" multiple>
+</div>
+<div id="fileList" class="file-list"></div>
+<div style="margin-top:20px">
+<button class="btn-secondary btn" onclick="goToStep(1)">Back</button>
+<button class="btn hidden" id="processBtn" onclick="processFiles()">Process Statements</button>
+</div>
+</div>
+<div id="step3" class="step hidden">
+<h1>Review Flagged Transactions</h1>
+<p style="color:#fff;margin-bottom:10px;font-size:14px">Refer to your statement for accuracy.</p>
+<p style="color:#fff;margin-bottom:20px;font-size:13px;line-height:1.6;opacity:0.9">A business expense is deductible if it's ordinary and necessary for your creative work. This includes client meetings (50% deductible for meals), supplies used for projects, software subscriptions, equipment, and travel for work purposes. Personal expenses are not deductible.</p>
+<div style="margin-bottom:20px">
+<button class="btn" onclick="markAllYes()" style="margin-right:10px">Mark All Yes</button>
+<button class="btn" onclick="markAllNo()">Mark All No</button>
+</div>
+<div id="transactionsList"></div>
+<div style="margin-top:20px">
+<button class="btn-secondary btn" onclick="goToStep(2)">Back</button>
+<button class="btn hidden" id="finishBtn" onclick="generateReport()">Generate Report</button>
+</div>
+</div>
+<div id="step4" class="step hidden">
+<h1>Your Tax Deduction Summary</h1>
+<p style="color:#fff;margin-bottom:20px;font-size:14px">Organized by month and category.</p>
+<div class="summary-box">
+<div class="summary-grid">
+<div class="summary-item"><div class="summary-label">Total Deductible</div><div class="summary-value" id="totalDeductible">$0.00</div></div>
+<div class="summary-item"><div class="summary-label">Transactions Reviewed</div><div class="summary-value" id="totalTransactions">0</div></div>
+<div class="summary-item"><div class="summary-label">Estimated Tax Savings</div><div class="summary-value" id="estimatedSavings">$0.00</div><div style="font-size:11px;color:#fff;margin-top:5px;opacity:0.7">@ 25% rate</div></div>
+<div class="summary-item"><div class="summary-label">Months Covered</div><div class="summary-value" id="monthsCovered">0</div></div>
+</div>
+</div>
+<div id="recurringSection"></div>
+<div id="monthlyBreakdown" style="margin-top:40px"></div>
+<div style="margin-top:40px">
+<button class="btn" onclick="downloadReport()">Download Full Report (CSV)</button>
+<button class="btn" onclick="downloadMonthly()">Download by Month (ZIP)</button>
+<button class="btn-secondary btn" onclick="resetTool()">Start Over</button>
+</div>
+</div>
+</div>
+<div class="signature">NW</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let userProfile={},uploadedFiles=[],allTransactions=[],flaggedTransactions=[],learnedPatterns={};
+const IRS_CATEGORIES={software:['adobe','microsoft','canva','figma','sketch','procreate','affinity','notion','dropbox','google','icloud','spotify','apple.com','apple music','netflix','hulu','disney','zoom','slack','asana','trello','monday','salesforce','hubspot','mailchimp','squarespace','wix','wordpress','shopify','quickbooks','xero','freshbooks','grammarly','skillshare','linkedin','github','vimeo','youtube premium','chatgpt','openai','anthropic','midjourney','envato','creative cloud','typekit','behance'],equipment:['b&h','adorama','apple','best buy','camera','lens','microphone'],travel:['delta','united','american airlines','jetblue','southwest','hotel','airbnb','uber','lyft'],supplies:['staples','office depot','amazon'],meals:['starbucks','coffee','restaurant','chipotle','panera'],recurring:['recurring card payment','recurring payment','subscription']};
 
+function completeOnboarding(){
+  const types=Array.from(document.querySelectorAll('.creative-checkbox:checked')).map(e=>e.value);
+  userProfile={
+    creativeType:types,
+    businessStructure:document.getElementById('businessStructure').value,
+    homeOffice:document.getElementById('homeOffice').value,
+    clientMeals:document.getElementById('clientMeals').value
+  };
+  if(types.length===0||!userProfile.businessStructure){
+    alert('Please complete all required fields');
+    return;
+  }
+  goToStep(2);
+}
+
+function goToStep(stepNum){
+  document.querySelectorAll('.step').forEach(s=>s.classList.add('hidden'));
+  document.getElementById('step'+stepNum).classList.remove('hidden');
+}
+
+document.getElementById('fileInput').addEventListener('change',function(e){
+  uploadedFiles=Array.from(e.target.files);
+  const list=document.getElementById('fileList');
+  list.innerHTML='<div style="margin-top:20px;color:#fff">Files selected:</div>';
+  uploadedFiles.forEach(file=>{
+    const div=document.createElement('div');
+    div.className='file-item';
+    div.innerHTML='<span>'+file.name+'</span><span style="color:#fff;opacity:0.7">'+(file.size/1024).toFixed(1)+' KB</span>';
+    list.appendChild(div);
+  });
+  document.getElementById('processBtn').classList.remove('hidden');
+});
+
+async function processFiles(){
+  allTransactions=[];
+  flaggedTransactions=[];
+  const customRulesText=document.getElementById('customRules').value;
+  parseCustomRules(customRulesText);
+  for(const file of uploadedFiles){
+    if(file.name.endsWith('.pdf')){
+      await parsePDF(file);
+    }else{
+      await parseCSV(file);
+    }
+  }
+  categorizeTransactions();
+  goToStep(3);
+  renderFlaggedTransactions();
+}
+
+function parseCustomRules(text){
+  if(!text.trim())return;
+  const lines=text.toLowerCase().split(/[.\n]+/).filter(l=>l.trim());
+  lines.forEach(line=>{
+    if(line.includes('always work')||line.includes('work related')||line.includes('always deduct')){
+      const match=line.match(/(\w+(?:\s+\w+)*)\s+is\s+always|all\s+(?:of\s+the\s+)?(\w+(?:\s+\w+)*)/);
+      if(match){
+        const merchant=(match[1]||match[2]).trim();
+        learnedPatterns[merchant]=true;
+      }
+    }else if(line.includes("don't ask")||line.includes('never ask')||line.includes('skip')){
+      const match=line.match(/about\s+(\w+(?:\s+\w+)*)/);
+      if(match){
+        const keyword=match[1].trim();
+        if(!window.skipKeywords)window.skipKeywords=[];
+        window.skipKeywords.push(keyword);
+      }
+    }else if(line.includes('always ask')){
+      const match=line.match(/about\s+(\w+(?:\s+\w+)*)/);
+      if(match){
+        const keyword=match[1].trim();
+        if(!window.alwaysAskKeywords)window.alwaysAskKeywords=[];
+        window.alwaysAskKeywords.push(keyword);
+      }
+    }
+  });
+}
+
+async function parsePDF(file){
+  const arrayBuffer=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({
+    data:arrayBuffer,
+    standardFontDataUrl:'https://cdnjs.cloudflare.com/ajax/libs/pdfjs-dist/3.11.174/standard_fonts/',
+    verbosity:0
+  }).promise;
+  let allText=[];
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const textContent=await page.getTextContent();
+    const items=textContent.items.map(item=>({
+      text:item.str,
+      x:item.transform[4],
+      y:item.transform[5]
+    }));
+    const lines={};
+    items.forEach(item=>{
+      const y=Math.round(item.y);
+      if(!lines[y])lines[y]=[];
+      lines[y].push(item);
+    });
+    Object.keys(lines).sort((a,b)=>b-a).forEach(y=>{
+      allText.push(lines[y].sort((a,b)=>a.x-b.x).map(item=>item.text).join(' '));
+    });
+  }
+  parseTransactionsFromText(allText.join('\n'),file.name);
+}
+
+function parseTransactionsFromText(text,filename){
+  text.split('\n').filter(line=>line.trim().length>10).forEach((line,idx)=>{
+    const match=line.match(/(\w{3}\s+\d{1,2}|\d{1,2}\/\d{1,2})\s+(.+?)\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s*$/);
+    if(match){
+      const dateStr=match[1];
+      let merchant=match[2].trim();
+      const amountStr=match[3];
+      const amount=Math.abs(parseFloat(amountStr.replace(/[$,\s-]/g,'')));
+      if(amount>0&&merchant.length>2){
+        const now=new Date();
+        const date=new Date(dateStr+' '+now.getFullYear());
+        if(date>now)date.setFullYear(now.getFullYear()-1);
+        allTransactions.push({
+          id:filename+'_'+idx,
+          date:date.toLocaleDateString(),
+          month:date.toLocaleString('default',{month:'long',year:'numeric'}),
+          merchant:merchant,
+          amount:amount,
+          category:'uncategorized',
+          isDeductible:false,
+          autoClassified:false
+        });
+      }
+    }
+  });
+}
+
+async function parseCSV(file){
+  await new Promise((resolve,reject)=>{
+    Papa.parse(file,{
+      header:true,
+      skipEmptyLines:true,
+      complete:function(results){
+        results.data.forEach((row,idx)=>{
+          const keys=Object.keys(row);
+          const dateField=keys.find(k=>k.toLowerCase().includes('date'))||keys[0];
+          const descField=keys.find(k=>k.toLowerCase().includes('desc')||k.toLowerCase().includes('memo'))||keys[1];
+          const amountField=keys.find(k=>k.toLowerCase().includes('amount'))||keys[2];
+          const amount=parseFloat(String(row[amountField]).replace(/[^0-9.-]/g,''));
+          if(!isNaN(amount)){
+            const date=new Date(row[dateField]);
+            allTransactions.push({
+              id:file.name+'_'+idx,
+              date:row[dateField],
+              month:date.toLocaleString('default',{month:'long',year:'numeric'}),
+              merchant:row[descField]||'Unknown',
+              amount:Math.abs(amount),
+              category:'uncategorized',
+              isDeductible:false,
+              autoClassified:false
+            });
+          }
+        });
+        resolve();
+      },
+      error:reject
+    });
+  });
+}
+
+function categorizeTransactions(){
+  allTransactions.forEach(t=>{
+    const merchant=t.merchant.toLowerCase();
+    for(const[pattern,isDeduct]of Object.entries(learnedPatterns)){
+      if(merchant.includes(pattern.toLowerCase())){
+        t.isDeductible=isDeduct;
+        t.category='learned';
+        t.autoClassified=true;
+        return;
+      }
+    }
+    if(window.skipKeywords&&window.skipKeywords.some(k=>merchant.includes(k))){
+      t.category='personal';
+      t.isDeductible=false;
+      t.autoClassified=true;
+      return;
+    }
+    if(window.alwaysAskKeywords&&window.alwaysAskKeywords.some(k=>merchant.includes(k))){
+      t.category='ambiguous-custom';
+      flaggedTransactions.push(t);
+      return;
+    }
+    for(const[category,keywords]of Object.entries(IRS_CATEGORIES)){
+      if(keywords.some(kw=>merchant.includes(kw))){
+        if(category==='meals'){
+          t.category='ambiguous-meal';
+          flaggedTransactions.push(t);
+          return;
+        }else if(category==='supplies'){
+          t.category='ambiguous-supplies';
+          flaggedTransactions.push(t);
+          return;
+        }else if(category==='recurring'){
+          t.category='ambiguous-recurring';
+          flaggedTransactions.push(t);
+          return;
+        }else{
+          t.category=category;
+          t.isDeductible=true;
+          t.autoClassified=true;
+          return;
+        }
+      }
+    }
+  });
+}
+
+function renderFlaggedTransactions(){
+  const container=document.getElementById('transactionsList');
+  container.innerHTML='';
+  if(flaggedTransactions.length===0){
+    document.getElementById('finishBtn').classList.remove('hidden');
+    container.innerHTML='<div style="padding:40px;text-align:center;color:#fff">No ambiguous transactions to review!</div>';
+    return;
+  }
+  flaggedTransactions.forEach((t,index)=>{
+    const card=document.createElement('div');
+    card.className='transaction-card flagged';
+    let question='';
+    if(t.category==='ambiguous-meal'){
+      question='Was this a client meeting or business meal? (50% deductible if yes)';
+    }else if(t.category==='ambiguous-supplies'){
+      question='Did you purchase office/work supplies here?';
+    }else if(t.category==='ambiguous-recurring'){
+      question='Is this recurring payment for a work-related subscription or service?';
+    }else if(t.category==='ambiguous-custom'){
+      question='Is this transaction work-related?';
+    }
+    card.innerHTML='<div class="transaction-header"><div><div style="font-size:13px;color:#fff">'+t.date+'</div><div style="font-size:16px;margin-top:3px;font-weight:500">'+t.merchant+'</div></div><div class="transaction-amount">$'+t.amount.toFixed(2)+'</div></div><div class="transaction-question"><div style="margin-bottom:8px;font-size:13px;color:#fff">'+question+'</div><div class="radio-group"><label style="color:#fff"><input type="radio" name="deductible_'+index+'" value="yes"> Yes</label><label style="color:#fff"><input type="radio" name="deductible_'+index+'" value="no"> No</label></div></div>';
+    container.appendChild(card);
+    document.querySelectorAll('input[name="deductible_'+index+'"]').forEach(radio=>{
+      radio.addEventListener('change',()=>{
+        checkAllReviewed();
+      });
+    });
+  });
+}
+
+function checkAllReviewed(){
+  let allAnswered=true;
+  flaggedTransactions.forEach((t,index)=>{
+    const selected=document.querySelector('input[name="deductible_'+index+'"]:checked');
+    if(!selected){
+      allAnswered=false;
+    }else{
+      t.isDeductible=selected.value==='yes';
+    }
+  });
+  if(allAnswered){
+    document.getElementById('finishBtn').classList.remove('hidden');
+  }
+}
+
+function markAllYes(){
+  flaggedTransactions.forEach((t,index)=>{
+    const yesRadio=document.querySelector('input[name="deductible_'+index+'"][value="yes"]');
+    if(yesRadio){
+      yesRadio.checked=true;
+      t.isDeductible=true;
+    }
+  });
+  document.getElementById('finishBtn').classList.remove('hidden');
+}
+
+function markAllNo(){
+  flaggedTransactions.forEach((t,index)=>{
+    const noRadio=document.querySelector('input[name="deductible_'+index+'"][value="no"]');
+    if(noRadio){
+      noRadio.checked=true;
+      t.isDeductible=false;
+    }
+  });
+  document.getElementById('finishBtn').classList.remove('hidden');
+}
+
+function generateReport(){
+  goToStep(4);
+  const deductible=allTransactions.filter(t=>t.isDeductible);
+  const total=deductible.reduce((sum,t)=>sum+t.amount,0);
+  const months=[...new Set(allTransactions.map(t=>t.month))];
+  document.getElementById('totalDeductible').textContent='$'+total.toFixed(2);
+  document.getElementById('totalTransactions').textContent=allTransactions.length;
+  document.getElementById('estimatedSavings').textContent='$'+(total*0.25).toFixed(2);
+  document.getElementById('monthsCovered').textContent=months.length;
+  renderRecurringPayments(deductible);
+  renderMonthlyBreakdown(months);
+}
+
+function renderRecurringPayments(deductibleTransactions){
+  const merchantData={};
+  deductibleTransactions.forEach(t=>{
+    // Extract the actual service name from the merchant string
+    let cleanedMerchant = t.merchant
+      .replace(/Recurring (Card )?Purchase\s+\d{1,2}\/\d{1,2}\s+/gi, '') // Remove "Recurring Card Purchase 12/01"
+      .replace(/Recurring (Card )?Payment (Authorization )?\s*/gi, '') // Remove recurring payment text
+      .trim();
+    
+    // Now extract the brand name - look for known patterns
+    let brandName = '';
+    
+    // Check for common services first
+    if(/netflix/i.test(cleanedMerchant)) {
+      brandName = 'Netflix';
+    } else if(/amazon\s*prime/i.test(cleanedMerchant)) {
+      brandName = 'Amazon Prime';
+    } else if(/google|youtube/i.test(cleanedMerchant)) {
+      brandName = 'YouTube TV';
+    } else if(/figma/i.test(cleanedMerchant)) {
+      brandName = 'Figma';
+    } else if(/adobe/i.test(cleanedMerchant)) {
+      brandName = 'Adobe';
+    } else if(/microsoft/i.test(cleanedMerchant)) {
+      brandName = 'Microsoft 365';
+    } else if(/hulu/i.test(cleanedMerchant)) {
+      brandName = 'Hulu';
+    } else if(/spotify/i.test(cleanedMerchant)) {
+      brandName = 'Spotify';
+    } else if(/dropbox/i.test(cleanedMerchant)) {
+      brandName = 'Dropbox';
+    } else if(/canva/i.test(cleanedMerchant)) {
+      brandName = 'Canva';
+    } else {
+      // Fallback: extract first meaningful word (not dates, not transaction codes)
+      const words = cleanedMerchant
+        .replace(/\*[a-z0-9]+/gi, '') // Remove transaction IDs
+        .replace(/card \d+/gi, '') // Remove card numbers
+        .replace(/\d{3}-\d{7}/g, '') // Remove phone numbers
+        .replace(/\.[a-z]{2,3}\/[a-z#]+/gi, '') // Remove URLs
+        .replace(/\s+(ca|wa|tx|ny|fl)\s*/gi, ' ') // Remove state codes
+        .split(/\s+/)
+        .filter(w => w.length > 2 && !/^\d+$/.test(w));
+      
+      if(words.length > 0) {
+        brandName = words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
+      } else {
+        brandName = t.merchant; // Use original if we can't parse it
+      }
+    }
+    
+    if(!merchantData[brandName]) {
+      merchantData[brandName] = {
+        amounts: [],
+        displayName: brandName,
+        isRecurring: t.merchant.toLowerCase().includes('recurring')
+      };
+    }
+    merchantData[brandName].amounts.push(t.amount);
+  });
+  
+  const recurring=[];
+  Object.entries(merchantData).forEach(([merchant,data])=>{
+    // Include if it appears 2+ times with consistent amounts OR if it has "recurring" in the name
+    const appearsMultipleTimes = data.amounts.length >= 2;
+    const avg=data.amounts.reduce((a,b)=>a+b,0)/data.amounts.length;
+    const isConsistent=data.amounts.every(amt=>Math.abs(amt-avg)<=15); // Increased tolerance for price changes
+    
+    if(data.isRecurring || (appearsMultipleTimes && isConsistent)){
+      const total=data.amounts.reduce((a,b)=>a+b,0);
+      recurring.push({merchant:data.displayName,monthsPaid:data.amounts.length,avgAmount:avg,total});
+    }
+  });
+  recurring.sort((a,b)=>b.total-a.total); // Sort by total amount
+  const container=document.getElementById('recurringSection');
+  if(recurring.length>0){
+    let html='<div style="margin-top:40px"><h2 style="font-size:18px;margin-bottom:20px;font-weight:normal;color:#fff">Subscription Services</h2><div style="background:transparent;border:1px solid #fff;padding:20px">';
+    recurring.forEach(item=>{
+      html+='<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.2)"><span style="color:#fff">'+item.merchant+'</span><span style="color:#fff">$'+item.avgAmount.toFixed(2)+' • '+item.monthsPaid+' '+(item.monthsPaid===1?'month':'months')+' • $'+item.total.toFixed(2)+'</span></div>';
+    });
+    html+='</div></div>';
+    container.innerHTML=html;
+  }else{
+    container.innerHTML='';
+  }
+}
+
+function renderMonthlyBreakdown(months){
+  const container=document.getElementById('monthlyBreakdown');
+  container.innerHTML='';
+  months.forEach(month=>{
+    const monthTransactions=allTransactions.filter(t=>t.month===month);
+    const deductible=monthTransactions.filter(t=>t.isDeductible);
+    const total=deductible.reduce((sum,t)=>sum+t.amount,0);
+    const section=document.createElement('div');
+    section.className='month-section';
+    let items='';
+    deductible.forEach(t=>{
+      items+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.2);font-size:12px;color:#fff"><span>'+t.date+' - '+t.merchant+'</span><span>$'+t.amount.toFixed(2)+'</span></div>';
+    });
+    section.innerHTML='<div class="month-header">'+month+'</div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:15px;color:#fff"><span>'+monthTransactions.length+' transactions</span><span>'+deductible.length+' deductible • $'+total.toFixed(2)+'</span></div>'+(deductible.length>0?'<div style="background:transparent;padding:15px;border:1px solid rgba(255,255,255,0.2)">'+items+'</div>':'<div style="color:#fff;opacity:0.7;font-size:12px">No deductible transactions this month</div>');
+    container.appendChild(section);
+  });
+}
+
+function downloadReport(){
+  try{
+    const data=allTransactions.map(t=>({
+      Date:t.date,
+      Month:t.month,
+      Merchant:t.merchant,
+      Amount:t.amount,
+      Category:t.category,
+      Deductible:t.isDeductible?'Yes':'No'
+    }));
+    const csv=Papa.unparse(data);
+    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const link=document.createElement('a');
+    link.href=URL.createObjectURL(blob);
+    link.download='tax_report_'+new Date().toISOString().split('T')[0]+'.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+  }catch(e){
+    console.error(e);
+    alert('Download failed: '+e.message);
+  }
+}
+
+async function downloadMonthly(){
+  try{
+    const zip=new JSZip();
+    const months=[...new Set(allTransactions.map(t=>t.month))];
+    if(months.length===0){
+      alert('No transactions to download');
+      return;
+    }
+    months.forEach(month=>{
+      const data=allTransactions.filter(t=>t.month===month&&t.isDeductible);
+      if(data.length>0){
+        const csv=Papa.unparse(data.map(t=>({
+          Date:t.date,
+          Merchant:t.merchant,
+          Amount:t.amount,
+          Category:t.category
+        })));
+        zip.file(month.replace(/\s/g,'_')+'_deductions.csv',csv);
+      }
+    });
+    const content=await zip.generateAsync({type:'blob'});
+    const link=document.createElement('a');
+    link.href=URL.createObjectURL(content);
+    link.download='monthly_reports_'+new Date().toISOString().split('T')[0]+'.zip';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+  }catch(e){
+    console.error(e);
+    alert('Download failed: '+e.message);
+  }
+}
+
+function resetTool(){
+  location.reload();
+}
+</script>
+</body>
+</html>
