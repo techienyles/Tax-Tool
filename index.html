@@ -9,50 +9,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.6;padding:20px;position:relative}
+body{font-family:'Inter',sans-serif;background:#8B0000;color:#fff;line-height:1.6;padding:20px;position:relative}
 @media(min-width:768px){body{padding:40px}}
-.signature{position:fixed;bottom:10px;right:10px;color:#666;font-size:10px}
+.signature{position:fixed;bottom:10px;right:10px;color:#fff;font-size:10px;opacity:0.5}
 @media(min-width:768px){.signature{bottom:20px;right:20px;font-size:12px}}
 .container{max-width:700px;margin:0 auto}
 .step{margin-bottom:40px}
 h1{font-size:18px;margin-bottom:20px;font-weight:normal;color:#fff}
 .description{color:#fff;margin-bottom:30px;font-size:14px;line-height:1.8}
-.btn{background:#fff;color:#000;border:none;padding:10px 20px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;margin-right:10px;margin-top:10px;width:100%}
+.btn{background:transparent;color:#fff;border:1px solid #fff;padding:10px 20px;font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;margin-right:10px;margin-top:10px;width:100%}
 @media(min-width:600px){.btn{width:auto}}
-.btn:hover{background:#ddd}
+.btn:hover{background:rgba(255,255,255,0.1)}
 .btn:disabled{opacity:.3;cursor:not-allowed}
 .btn-secondary{background:transparent;color:#fff;border:1px solid #fff}
-.btn-secondary:hover{background:#fff;color:#000}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
 .input-group{margin-bottom:20px}
-.input-group label{display:block;margin-bottom:8px;font-size:13px;color:#999}
-select,textarea{width:100%;padding:10px;background:#111;border:1px solid #333;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
+.input-group label{display:block;margin-bottom:8px;font-size:13px;color:#fff}
+select,textarea{width:100%;padding:10px;background:transparent;border:1px solid #fff;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
 select:focus,textarea:focus{outline:none;border-color:#fff}
-.upload-zone{border:1px solid #333;padding:40px;text-align:center;cursor:pointer;margin-top:20px}
-.upload-zone:hover{border-color:#fff}
+select option{background:#8B0000;color:#fff}
+input[type="checkbox"],input[type="radio"]{width:16px;height:16px;border:1px solid #fff;background:transparent;cursor:pointer;appearance:none;-webkit-appearance:none;margin-right:8px;position:relative;flex-shrink:0}
+input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:12px}
+input[type="radio"]{border-radius:50%}
+input[type="radio"]:checked::after{content:'';position:absolute;top:3px;left:3px;width:8px;height:8px;background:#fff;border-radius:50%}
+.upload-zone{border:1px solid #fff;padding:40px;text-align:center;cursor:pointer;margin-top:20px;color:#fff}
+.upload-zone:hover{border-color:#fff;background:rgba(255,255,255,0.05)}
 .upload-zone input{display:none}
 .file-list{margin-top:20px;font-size:13px}
-.file-item{padding:10px;background:#111;margin-bottom:5px;border-left:2px solid #fff;display:flex;justify-content:space-between}
-.transaction-card{background:#111;padding:20px;margin-bottom:15px}
-.transaction-card.flagged{border:1px solid #333}
+.file-item{padding:10px;background:transparent;border:1px solid #fff;margin-bottom:5px;display:flex;justify-content:space-between}
+.transaction-card{background:#fff;color:#000;padding:15px;margin-bottom:10px;border-radius:4px}
+.transaction-card.flagged{border:none}
 .transaction-header{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
 @media(min-width:600px){.transaction-header{flex-direction:row;justify-content:space-between;gap:0}}
-.transaction-amount{font-size:18px;font-weight:bold}
-.transaction-question{margin:15px 0;padding:15px;background:#000;border:1px solid #333}
+.transaction-amount{font-size:18px;font-weight:bold;color:#000}
+.transaction-question{margin:10px 0 0 0;padding:10px;background:#f5f5f5;border:none;border-radius:4px}
 .radio-group{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 @media(min-width:600px){.radio-group{flex-direction:row;gap:20px}}
-.radio-group label{display:flex;align-items:center;gap:8px;cursor:pointer}
-.checkbox-group{margin-top:10px;font-size:13px;color:#999}
-.summary-box{background:#111;padding:30px;margin-top:30px;border:1px solid #333}
+.radio-group label{display:flex;align-items:center;gap:8px;cursor:pointer;color:#000}
+.checkbox-group{margin-top:10px;font-size:13px;color:#666}
+.summary-box{background:transparent;border:1px solid #fff;padding:30px;margin-top:30px}
 .summary-grid{display:grid;grid-template-columns:1fr;gap:15px;margin-top:20px}
 @media(min-width:600px){.summary-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
-.summary-item{padding:15px;background:#000}
-.summary-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
-.summary-value{font-size:24px}
+.summary-item{padding:15px;background:transparent;border:1px solid #fff}
+.summary-label{font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;opacity:0.7}
+.summary-value{font-size:24px;color:#fff}
 .hidden{display:none}
 .progress-bar{display:none}
-.month-section{margin-bottom:40px;padding:20px;background:#111;border-left:3px solid #fff}
-.month-header{font-size:14px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #333}
-.info-box{background:#111;border:1px solid #333;padding:15px;margin-top:20px;font-size:12px;color:#999}
+.month-section{margin-bottom:40px;padding:20px;background:transparent;border:1px solid #fff}
+.month-header{font-size:14px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #fff;opacity:0.9}
+.info-box{background:transparent;border:1px solid #fff;padding:15px;margin-top:20px;font-size:12px;color:#fff}
 </style>
 </head>
 <body>
@@ -62,15 +67,15 @@ select:focus,textarea:focus{outline:none;border-color:#fff}
 <p class="description">Tool built to simplify the tax process for creatives. Input all the information as specifically as possible to make things easier and more accurate.</p>
 <div class="input-group">
 <label>What type of creative work do you do? (Select all that apply)</label>
-<div style="background:#111;border:1px solid #333;padding:15px;max-width:400px">
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="photographer"> Photographer</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="designer"> Graphic Designer</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="writer"> Writer / Copywriter</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="filmmaker"> Filmmaker / Video Producer</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="illustrator"> Illustrator</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="web-dev"> Web Developer</label>
-<label style="display:block;margin-bottom:8px;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="musician"> Musician / Audio Producer</label>
-<label style="display:block;margin-bottom:0;cursor:pointer"><input type="checkbox" class="creative-checkbox" value="other"> Other Creative Professional</label>
+<div style="background:transparent;border:1px solid #fff;padding:15px;max-width:400px">
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="photographer"> Photographer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="designer"> Graphic Designer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="writer"> Writer / Copywriter</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="filmmaker"> Filmmaker / Video Producer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="illustrator"> Illustrator</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="web-dev"> Web Developer</label>
+<label style="display:block;margin-bottom:8px;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="musician"> Musician / Audio Producer</label>
+<label style="display:block;margin-bottom:0;cursor:pointer;color:#fff"><input type="checkbox" class="creative-checkbox" value="other"> Other Creative Professional</label>
 </div>
 </div>
 <div class="input-group">
@@ -106,37 +111,43 @@ select:focus,textarea:focus{outline:none;border-color:#fff}
 </div>
 <div id="step2" class="step hidden">
 <h1>Upload Your Bank Statements</h1>
-<p style="color:#999;margin-bottom:20px;font-size:14px">CSV or PDF format.</p>
+<p style="color:#fff;margin-bottom:20px;font-size:14px">CSV or PDF format.</p>
 <div class="info-box"><strong>How to get your statements:</strong><br>• CSV: Most banks let you download transactions as CSV<br>• PDF: Upload your bank statement PDFs directly</div>
 <div style="margin-top:30px;margin-bottom:20px">
-<label style="display:block;margin-bottom:8px;font-size:13px;color:#999">Add custom rules (optional)</label>
-<textarea id="customRules" placeholder="Example: RedFin Coffee is always work related. Don't ask about grocery stores. Always ask about dinners." style="width:100%;max-width:600px;min-height:100px;padding:12px;background:#111;border:1px solid #333;color:#fff;font-family:'Times New Roman',serif;font-size:14px;resize:vertical"></textarea>
-<div style="font-size:12px;color:#666;margin-top:8px">Tell the tool about patterns in your spending so it knows what to auto-approve or always ask about.</div>
+<label style="display:block;margin-bottom:8px;font-size:13px;color:#fff">Add custom rules (optional)</label>
+<textarea id="customRules" placeholder="Example: RedFin Coffee is always work related. Don't ask about grocery stores. Always ask about dinners." style="width:100%;max-width:600px;min-height:100px;padding:12px;background:transparent;border:1px solid #fff;color:#fff;font-family:'Inter',sans-serif;font-size:14px;resize:vertical"></textarea>
+<div style="font-size:12px;color:#fff;margin-top:8px">Tell the tool about patterns in your spending so it knows what to auto-approve or always ask about.</div>
 </div>
 <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
 <div style="font-size:40px;margin-bottom:15px">[ ]</div>
 <div>Click to select CSV or PDF files</div>
-<div style="margin-top:10px;color:#666;font-size:12px">Select multiple files for all months.</div>
+<div style="margin-top:10px;color:#fff;font-size:12px;opacity:0.7">Select multiple files for all months.</div>
 <input type="file" id="fileInput" accept=".csv,.pdf" multiple>
 </div>
 <div id="fileList" class="file-list"></div>
+<div style="margin-top:20px">
+<button class="btn-secondary btn" onclick="goToStep(1)">Back</button>
 <button class="btn hidden" id="processBtn" onclick="processFiles()">Process Statements</button>
+</div>
 </div>
 <div id="step3" class="step hidden">
 <h1>Review Flagged Transactions</h1>
-<p style="color:#999;margin-bottom:20px;font-size:14px">Refer to your statement for accuracy.</p>
-<div class="progress-bar"><div class="progress-fill" id="reviewProgress" style="width:0%"></div></div>
+<p style="color:#fff;margin-bottom:10px;font-size:14px">Refer to your statement for accuracy.</p>
+<p style="color:#fff;margin-bottom:30px;font-size:13px;line-height:1.6;opacity:0.9">A business expense is deductible if it's ordinary and necessary for your creative work. This includes client meetings (50% deductible for meals), supplies used for projects, software subscriptions, equipment, and travel for work purposes. Personal expenses are not deductible.</p>
 <div id="transactionsList"></div>
+<div style="margin-top:20px">
+<button class="btn-secondary btn" onclick="goToStep(2)">Back</button>
 <button class="btn hidden" id="finishBtn" onclick="generateReport()">Generate Report</button>
+</div>
 </div>
 <div id="step4" class="step hidden">
 <h1>Your Tax Deduction Summary</h1>
-<p style="color:#999;margin-bottom:20px;font-size:14px">Organized by month and category.</p>
+<p style="color:#fff;margin-bottom:20px;font-size:14px">Organized by month and category.</p>
 <div class="summary-box">
 <div class="summary-grid">
 <div class="summary-item"><div class="summary-label">Total Deductible</div><div class="summary-value" id="totalDeductible">$0.00</div></div>
 <div class="summary-item"><div class="summary-label">Transactions Reviewed</div><div class="summary-value" id="totalTransactions">0</div></div>
-<div class="summary-item"><div class="summary-label">Estimated Tax Savings</div><div class="summary-value" id="estimatedSavings">$0.00</div><div style="font-size:11px;color:#666;margin-top:5px">@ 25% rate</div></div>
+<div class="summary-item"><div class="summary-label">Estimated Tax Savings</div><div class="summary-value" id="estimatedSavings">$0.00</div><div style="font-size:11px;color:#fff;margin-top:5px;opacity:0.7">@ 25% rate</div></div>
 <div class="summary-item"><div class="summary-label">Months Covered</div><div class="summary-value" id="monthsCovered">0</div></div>
 </div>
 </div>
@@ -154,44 +165,57 @@ select:focus,textarea:focus{outline:none;border-color:#fff}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-let userProfile={},uploadedFiles=[],allTransactions=[],flaggedTransactions=[],currentReviewIndex=0,learnedPatterns={};
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let userProfile={},uploadedFiles=[],allTransactions=[],flaggedTransactions=[],learnedPatterns={};
 const IRS_CATEGORIES={software:['adobe','microsoft','canva','figma','sketch','procreate','affinity','notion'],equipment:['b&h','adorama','apple','best buy','camera','lens','microphone'],travel:['delta','united','american airlines','jetblue','southwest','hotel','airbnb','uber','lyft'],supplies:['staples','office depot','amazon'],meals:['starbucks','coffee','restaurant','chipotle','panera']};
 
 function completeOnboarding(){
-  const t=Array.from(document.querySelectorAll('.creative-checkbox:checked')).map(e=>e.value);
-  if(userProfile={creativeType:t,businessStructure:document.getElementById('businessStructure').value,homeOffice:document.getElementById('homeOffice').value,clientMeals:document.getElementById('clientMeals').value},0===t.length||!userProfile.businessStructure)return void alert('Please complete all required fields');
-  document.getElementById('step1').classList.add('hidden');
-  document.getElementById('step2').classList.remove('hidden');
+  const types=Array.from(document.querySelectorAll('.creative-checkbox:checked')).map(e=>e.value);
+  userProfile={
+    creativeType:types,
+    businessStructure:document.getElementById('businessStructure').value,
+    homeOffice:document.getElementById('homeOffice').value,
+    clientMeals:document.getElementById('clientMeals').value
+  };
+  if(types.length===0||!userProfile.businessStructure){
+    alert('Please complete all required fields');
+    return;
+  }
+  goToStep(2);
+}
+
+function goToStep(stepNum){
+  document.querySelectorAll('.step').forEach(s=>s.classList.add('hidden'));
+  document.getElementById('step'+stepNum).classList.remove('hidden');
 }
 
 document.getElementById('fileInput').addEventListener('change',function(e){
   uploadedFiles=Array.from(e.target.files);
-  const t=document.getElementById('fileList');
-  t.innerHTML='<div style="margin-top:20px;color:#999">Files selected:</div>';
-  uploadedFiles.forEach(e=>{
-    const a=document.createElement('div');
-    a.className='file-item';
-    a.innerHTML='<span>'+e.name+'</span><span style="color:#666">'+(e.size/1024).toFixed(1)+' KB</span>';
-    t.appendChild(a);
+  const list=document.getElementById('fileList');
+  list.innerHTML='<div style="margin-top:20px;color:#fff">Files selected:</div>';
+  uploadedFiles.forEach(file=>{
+    const div=document.createElement('div');
+    div.className='file-item';
+    div.innerHTML='<span>'+file.name+'</span><span style="color:#fff;opacity:0.7">'+(file.size/1024).toFixed(1)+' KB</span>';
+    list.appendChild(div);
   });
   document.getElementById('processBtn').classList.remove('hidden');
 });
 
 async function processFiles(){
   allTransactions=[];
+  flaggedTransactions=[];
   const customRulesText=document.getElementById('customRules').value;
   parseCustomRules(customRulesText);
-  for(const e of uploadedFiles){
-    if(e.name.endsWith('.pdf')){
-      await parsePDF(e);
+  for(const file of uploadedFiles){
+    if(file.name.endsWith('.pdf')){
+      await parsePDF(file);
     }else{
-      await parseCSV(e);
+      await parseCSV(file);
     }
   }
   categorizeTransactions();
-  document.getElementById('step2').classList.add('hidden');
-  document.getElementById('step3').classList.remove('hidden');
+  goToStep(3);
   renderFlaggedTransactions();
 }
 
@@ -223,44 +247,53 @@ function parseCustomRules(text){
   });
 }
 
-async function parsePDF(e){
-  const t=await e.arrayBuffer();
-  const a=await pdfjsLib.getDocument({data:t,standardFontDataUrl:'https://cdnjs.cloudflare.com/ajax/libs/pdfjs-dist/3.11.174/standard_fonts/',verbosity:0}).promise;
-  let n=[];
-  for(let e=1;e<=a.numPages;e++){
-    const t=await a.getPage(e);
-    const r=(await t.getTextContent()).items.map(e=>({text:e.str,x:e.transform[4],y:e.transform[5]}));
-    const s={};
-    r.forEach(e=>{
-      const t=Math.round(e.y);
-      if(!s[t])s[t]=[];
-      s[t].push(e);
+async function parsePDF(file){
+  const arrayBuffer=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({
+    data:arrayBuffer,
+    standardFontDataUrl:'https://cdnjs.cloudflare.com/ajax/libs/pdfjs-dist/3.11.174/standard_fonts/',
+    verbosity:0
+  }).promise;
+  let allText=[];
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const textContent=await page.getTextContent();
+    const items=textContent.items.map(item=>({
+      text:item.str,
+      x:item.transform[4],
+      y:item.transform[5]
+    }));
+    const lines={};
+    items.forEach(item=>{
+      const y=Math.round(item.y);
+      if(!lines[y])lines[y]=[];
+      lines[y].push(item);
     });
-    Object.keys(s).sort((e,t)=>t-e).forEach(e=>{
-      n.push(s[e].sort((e,t)=>e.x-t.x).map(e=>e.text).join(' '));
+    Object.keys(lines).sort((a,b)=>b-a).forEach(y=>{
+      allText.push(lines[y].sort((a,b)=>a.x-b.x).map(item=>item.text).join(' '));
     });
   }
-  parseTransactionsFromText(n.join('\n'),e.name);
+  parseTransactionsFromText(allText.join('\n'),file.name);
 }
 
-function parseTransactionsFromText(e,t){
-  e.split('\n').filter(e=>e.trim().length>10).forEach((e,a)=>{
-    const n=e.match(/(\w{3}\s+\d{1,2}|\d{1,2}\/\d{1,2})\s+(.+?)\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s*$/);
-    if(n){
-      const r=n[1];
-      const s=n[2];
-      const d=n[3];
-      const l=Math.abs(parseFloat(d.replace(/[$,\s-]/g,'')));
-      if(l>0&&s.length>2){
-        const e=new Date();
-        const n=new Date(r+' '+e.getFullYear());
-        if(n>e)n.setFullYear(e.getFullYear()-1);
+function parseTransactionsFromText(text,filename){
+  text.split('\n').filter(line=>line.trim().length>10).forEach((line,idx)=>{
+    const match=line.match(/(\w{3}\s+\d{1,2}|\d{1,2}\/\d{1,2})\s+(.+?)\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s+([-]?\d{1,3}(?:,\d{3})*\.\d{2})\s*$/);
+    if(match){
+      const dateStr=match[1];
+      let merchant=match[2].trim();
+      const amountStr=match[3];
+      const amount=Math.abs(parseFloat(amountStr.replace(/[$,\s-]/g,'')));
+      if(amount>0&&merchant.length>2){
+        const now=new Date();
+        const date=new Date(dateStr+' '+now.getFullYear());
+        if(date>now)date.setFullYear(now.getFullYear()-1);
         allTransactions.push({
-          id:t+'_'+a,
-          date:n.toLocaleDateString(),
-          month:n.toLocaleString('default',{month:'long',year:'numeric'}),
-          merchant:s.trim(),
-          amount:l,
+          id:filename+'_'+idx,
+          date:date.toLocaleDateString(),
+          month:date.toLocaleString('default',{month:'long',year:'numeric'}),
+          merchant:merchant,
+          amount:amount,
           category:'uncategorized',
           isDeductible:false,
           autoClassified:false
@@ -270,156 +303,155 @@ function parseTransactionsFromText(e,t){
   });
 }
 
-async function parseCSV(e){
-  await new Promise((t,a)=>{
-    Papa.parse(e,{
+async function parseCSV(file){
+  await new Promise((resolve,reject)=>{
+    Papa.parse(file,{
       header:true,
       skipEmptyLines:true,
-      complete:function(a){
-        a.data.forEach((a,n)=>{
-          const r=Object.keys(a);
-          const s=r.find(e=>e.toLowerCase().includes('date'))||r[0];
-          const d=r.find(e=>e.toLowerCase().includes('desc')||e.toLowerCase().includes('memo'))||r[1];
-          const i=parseFloat(String(a[r.find(e=>e.toLowerCase().includes('amount'))||r[2]]).replace(/[^0-9.-]/g,''));
-          if(!isNaN(i)){
-            const r=new Date(a[s]);
+      complete:function(results){
+        results.data.forEach((row,idx)=>{
+          const keys=Object.keys(row);
+          const dateField=keys.find(k=>k.toLowerCase().includes('date'))||keys[0];
+          const descField=keys.find(k=>k.toLowerCase().includes('desc')||k.toLowerCase().includes('memo'))||keys[1];
+          const amountField=keys.find(k=>k.toLowerCase().includes('amount'))||keys[2];
+          const amount=parseFloat(String(row[amountField]).replace(/[^0-9.-]/g,''));
+          if(!isNaN(amount)){
+            const date=new Date(row[dateField]);
             allTransactions.push({
-              id:e.name+'_'+n,
-              date:a[s],
-              month:r.toLocaleString('default',{month:'long',year:'numeric'}),
-              merchant:a[d]||'Unknown',
-              amount:Math.abs(i),
+              id:file.name+'_'+idx,
+              date:row[dateField],
+              month:date.toLocaleString('default',{month:'long',year:'numeric'}),
+              merchant:row[descField]||'Unknown',
+              amount:Math.abs(amount),
               category:'uncategorized',
               isDeductible:false,
               autoClassified:false
             });
           }
         });
-        t();
+        resolve();
       },
-      error:a
+      error:reject
     });
   });
 }
 
 function categorizeTransactions(){
-  allTransactions.forEach(e=>{
-    const t=e.merchant.toLowerCase();
-    if(window.skipKeywords&&window.skipKeywords.some(k=>t.includes(k))){
-      e.category='personal';
-      e.isDeductible=false;
-      e.autoClassified=true;
+  allTransactions.forEach(t=>{
+    const merchant=t.merchant.toLowerCase();
+    for(const[pattern,isDeduct]of Object.entries(learnedPatterns)){
+      if(merchant.includes(pattern.toLowerCase())){
+        t.isDeductible=isDeduct;
+        t.category='learned';
+        t.autoClassified=true;
+        return;
+      }
+    }
+    if(window.skipKeywords&&window.skipKeywords.some(k=>merchant.includes(k))){
+      t.category='personal';
+      t.isDeductible=false;
+      t.autoClassified=true;
       return;
     }
-    if(window.alwaysAskKeywords&&window.alwaysAskKeywords.some(k=>t.includes(k))){
-      e.category='ambiguous-custom';
-      flaggedTransactions.push(e);
+    if(window.alwaysAskKeywords&&window.alwaysAskKeywords.some(k=>merchant.includes(k))){
+      t.category='ambiguous-custom';
+      flaggedTransactions.push(t);
       return;
     }
-    for(const[a,n]of Object.entries(IRS_CATEGORIES)){
-      if(n.some(e=>t.includes(e))){
-        if(a==='meals'){
-          e.category='ambiguous-meal';
-          flaggedTransactions.push(e);
+    for(const[category,keywords]of Object.entries(IRS_CATEGORIES)){
+      if(keywords.some(kw=>merchant.includes(kw))){
+        if(category==='meals'){
+          t.category='ambiguous-meal';
+          flaggedTransactions.push(t);
           return;
-        }else if(a==='supplies'){
-          e.category='ambiguous-supplies';
-          flaggedTransactions.push(e);
+        }else if(category==='supplies'){
+          t.category='ambiguous-supplies';
+          flaggedTransactions.push(t);
           return;
         }else{
-          e.category=a;
-          e.isDeductible=true;
-          e.autoClassified=true;
+          t.category=category;
+          t.isDeductible=true;
+          t.autoClassified=true;
           return;
         }
       }
-    }
-    if(learnedPatterns[e.merchant]!==undefined){
-      e.isDeductible=learnedPatterns[e.merchant];
-      e.category='learned';
-      e.autoClassified=true;
     }
   });
 }
 
 function renderFlaggedTransactions(){
-  const e=document.getElementById('transactionsList');
-  e.innerHTML='';
-  if(currentReviewIndex>=flaggedTransactions.length){
+  const container=document.getElementById('transactionsList');
+  container.innerHTML='';
+  if(flaggedTransactions.length===0){
     document.getElementById('finishBtn').classList.remove('hidden');
-    e.innerHTML='<div style="padding:40px;text-align:center;color:#666">All ambiguous transactions reviewed!</div>';
+    container.innerHTML='<div style="padding:40px;text-align:center;color:#fff">No ambiguous transactions to review!</div>';
     return;
   }
-  const t=flaggedTransactions[currentReviewIndex];
-  const a=document.createElement('div');
-  a.className='transaction-card flagged';
-  let n='';
-  if(t.category==='ambiguous-meal'){
-    n='Was this a client meeting or business meal? (50% deductible if yes)';
-  }else if(t.category==='ambiguous-supplies'){
-    n='Did you purchase office/work supplies here?';
-  }else if(t.category==='ambiguous-custom'){
-    n='Is this transaction work-related?';
-  }
-  a.innerHTML='<div class="transaction-header"><div><div style="font-size:14px;color:#999">'+t.date+' • '+t.month+'</div><div style="font-size:18px;margin-top:5px">'+t.merchant+'</div></div><div class="transaction-amount">$'+t.amount.toFixed(2)+'</div></div><div class="transaction-question"><div style="margin-bottom:10px">'+n+'</div><div class="radio-group"><label><input type="radio" name="deductible_'+currentReviewIndex+'" value="yes"> Yes, deductible</label><label><input type="radio" name="deductible_'+currentReviewIndex+'" value="no"> No, personal</label></div><div class="checkbox-group" id="learn_'+currentReviewIndex+'" style="display:none;margin-top:15px"><label><input type="checkbox" id="remember_'+currentReviewIndex+'"> Remember this for future '+t.merchant+' transactions</label></div></div><button class="btn" onclick="submitReview()" style="margin-top:15px">Next</button>';
-  e.appendChild(a);
-  document.querySelectorAll('input[name="deductible_'+currentReviewIndex+'"]').forEach(e=>{
-    e.addEventListener('change',()=>{
-      document.getElementById('learn_'+currentReviewIndex).style.display='block';
+  flaggedTransactions.forEach((t,index)=>{
+    const card=document.createElement('div');
+    card.className='transaction-card flagged';
+    let question='';
+    if(t.category==='ambiguous-meal'){
+      question='Was this a client meeting or business meal? (50% deductible if yes)';
+    }else if(t.category==='ambiguous-supplies'){
+      question='Did you purchase office/work supplies here?';
+    }else if(t.category==='ambiguous-custom'){
+      question='Is this transaction work-related?';
+    }
+    card.innerHTML='<div class="transaction-header"><div><div style="font-size:13px;color:#666">'+t.date+'</div><div style="font-size:16px;margin-top:3px;font-weight:500">'+t.merchant+'</div></div><div class="transaction-amount">$'+t.amount.toFixed(2)+'</div></div><div class="transaction-question"><div style="margin-bottom:8px;font-size:13px;color:#333">'+question+'</div><div class="radio-group"><label style="color:#000"><input type="radio" name="deductible_'+index+'" value="yes"> Yes</label><label style="color:#000"><input type="radio" name="deductible_'+index+'" value="no"> No</label></div><div class="checkbox-group" id="learn_'+index+'" style="display:none;margin-top:10px"><label><input type="checkbox" id="remember_'+index+'"> Remember for future</label></div></div>';
+    container.appendChild(card);
+    document.querySelectorAll('input[name="deductible_'+index+'"]').forEach(radio=>{
+      radio.addEventListener('change',()=>{
+        document.getElementById('learn_'+index).style.display='block';
+        checkAllReviewed();
+      });
     });
   });
-  updateProgress();
 }
 
-function submitReview(){
-  const e=document.querySelector('input[name="deductible_'+currentReviewIndex+'"]:checked');
-  if(!e){
-    alert('Please select an option');
-    return;
+function checkAllReviewed(){
+  let allAnswered=true;
+  flaggedTransactions.forEach((t,index)=>{
+    const selected=document.querySelector('input[name="deductible_'+index+'"]:checked');
+    if(!selected){
+      allAnswered=false;
+    }else{
+      t.isDeductible=selected.value==='yes';
+      const remember=document.getElementById('remember_'+index);
+      if(remember&&remember.checked){
+        learnedPatterns[t.merchant]=t.isDeductible;
+      }
+    }
+  });
+  if(allAnswered){
+    document.getElementById('finishBtn').classList.remove('hidden');
   }
-  const t=flaggedTransactions[currentReviewIndex];
-  t.isDeductible=e.value==='yes';
-  const a=document.getElementById('remember_'+currentReviewIndex);
-  if(a&&a.checked){
-    learnedPatterns[t.merchant]=t.isDeductible;
-  }
-  currentReviewIndex++;
-  renderFlaggedTransactions();
-}
-
-function updateProgress(){
-  const e=flaggedTransactions.length>0?currentReviewIndex/flaggedTransactions.length*100:100;
-  document.getElementById('reviewProgress').style.width=e+'%';
 }
 
 function generateReport(){
-  document.getElementById('step3').classList.add('hidden');
-  document.getElementById('step4').classList.remove('hidden');
-  const e=allTransactions.filter(e=>e.isDeductible);
-  const t=e.reduce((e,t)=>e+t.amount,0);
-  const a=[...new Set(allTransactions.map(e=>e.month))];
-  document.getElementById('totalDeductible').textContent='$'+t.toFixed(2);
+  goToStep(4);
+  const deductible=allTransactions.filter(t=>t.isDeductible);
+  const total=deductible.reduce((sum,t)=>sum+t.amount,0);
+  const months=[...new Set(allTransactions.map(t=>t.month))];
+  document.getElementById('totalDeductible').textContent='$'+total.toFixed(2);
   document.getElementById('totalTransactions').textContent=allTransactions.length;
-  document.getElementById('estimatedSavings').textContent='$'+(t*0.25).toFixed(2);
-  document.getElementById('monthsCovered').textContent=a.length;
-  renderRecurringPayments(e);
-  renderMonthlyBreakdown(a);
+  document.getElementById('estimatedSavings').textContent='$'+(total*0.25).toFixed(2);
+  document.getElementById('monthsCovered').textContent=months.length;
+  renderRecurringPayments(deductible);
+  renderMonthlyBreakdown(months);
 }
 
 function renderRecurringPayments(deductibleTransactions){
   const merchantData={};
   deductibleTransactions.forEach(t=>{
-    const merchant=t.merchant;
-    if(!merchantData[merchant]){
-      merchantData[merchant]=[];
-    }
-    merchantData[merchant].push(t.amount);
+    if(!merchantData[t.merchant])merchantData[t.merchant]=[];
+    merchantData[t.merchant].push(t.amount);
   });
   const recurring=[];
   Object.entries(merchantData).forEach(([merchant,amounts])=>{
     if(amounts.length>=2){
       const avg=amounts.reduce((a,b)=>a+b,0)/amounts.length;
-      const isConsistent=amounts.every(amt=>Math.abs(amt-avg)<=2);
+      const isConsistent=amounts.every(amt=>Math.abs(amt-avg)<=5);
       if(isConsistent){
         const total=amounts.reduce((a,b)=>a+b,0);
         recurring.push({merchant,count:amounts.length,total,avgAmount:avg});
@@ -427,56 +459,56 @@ function renderRecurringPayments(deductibleTransactions){
     }
   });
   recurring.sort((a,b)=>b.count-a.count);
+  const container=document.getElementById('recurringSection');
   if(recurring.length>0){
-    const container=document.getElementById('recurringSection');
-    let html='<div style="margin-top:40px"><h2 style="font-size:18px;margin-bottom:20px;font-weight:normal">Recurring Payments</h2><div style="background:#111;padding:20px;border:1px solid #333">';
+    let html='<div style="margin-top:40px"><h2 style="font-size:18px;margin-bottom:20px;font-weight:normal;color:#fff">Recurring Payments</h2><div style="background:transparent;border:1px solid #fff;padding:20px">';
     recurring.forEach(item=>{
-      html+='<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #222"><span>'+item.merchant+'</span><span style="color:#999">'+item.count+'x @ ~$'+item.avgAmount.toFixed(2)+' • $'+item.total.toFixed(2)+'</span></div>';
+      html+='<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.2)"><span style="color:#fff">'+item.merchant+'</span><span style="color:#fff;opacity:0.7">'+item.count+'x @ ~$'+item.avgAmount.toFixed(2)+' • $'+item.total.toFixed(2)+'</span></div>';
     });
     html+='</div></div>';
     container.innerHTML=html;
   }else{
-    document.getElementById('recurringSection').innerHTML='';
+    container.innerHTML='';
   }
 }
 
-function renderMonthlyBreakdown(e){
-  const t=document.getElementById('monthlyBreakdown');
-  t.innerHTML='';
-  e.forEach(e=>{
-    const a=allTransactions.filter(t=>t.month===e);
-    const n=a.filter(e=>e.isDeductible);
-    const r=n.reduce((e,t)=>e+t.amount,0);
-    const s=document.createElement('div');
-    s.className='month-section';
-    let d='';
-    n.forEach(e=>{
-      d+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222;font-size:12px"><span>'+e.date+' - '+e.merchant+'</span><span>$'+e.amount.toFixed(2)+'</span></div>';
+function renderMonthlyBreakdown(months){
+  const container=document.getElementById('monthlyBreakdown');
+  container.innerHTML='';
+  months.forEach(month=>{
+    const monthTransactions=allTransactions.filter(t=>t.month===month);
+    const deductible=monthTransactions.filter(t=>t.isDeductible);
+    const total=deductible.reduce((sum,t)=>sum+t.amount,0);
+    const section=document.createElement('div');
+    section.className='month-section';
+    let items='';
+    deductible.forEach(t=>{
+      items+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.2);font-size:12px;color:#fff"><span>'+t.date+' - '+t.merchant+'</span><span>$'+t.amount.toFixed(2)+'</span></div>';
     });
-    s.innerHTML='<div class="month-header">'+e+'</div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:15px"><span>'+a.length+' transactions</span><span>'+n.length+' deductible • $'+r.toFixed(2)+'</span></div>'+(n.length>0?'<div style="background:#000;padding:15px;border:1px solid #222">'+d+'</div>':'<div style="color:#666;font-size:12px">No deductible transactions this month</div>');
-    t.appendChild(s);
+    section.innerHTML='<div class="month-header">'+month+'</div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:15px;color:#fff"><span>'+monthTransactions.length+' transactions</span><span>'+deductible.length+' deductible • $'+total.toFixed(2)+'</span></div>'+(deductible.length>0?'<div style="background:transparent;padding:15px;border:1px solid rgba(255,255,255,0.2)">'+items+'</div>':'<div style="color:#fff;opacity:0.7;font-size:12px">No deductible transactions this month</div>');
+    container.appendChild(section);
   });
 }
 
 function downloadReport(){
   try{
-    const e=allTransactions.map(e=>({
-      Date:e.date,
-      Month:e.month,
-      Merchant:e.merchant,
-      Amount:e.amount,
-      Category:e.category,
-      Deductible:e.isDeductible?'Yes':'No'
+    const data=allTransactions.map(t=>({
+      Date:t.date,
+      Month:t.month,
+      Merchant:t.merchant,
+      Amount:t.amount,
+      Category:t.category,
+      Deductible:t.isDeductible?'Yes':'No'
     }));
-    const t=Papa.unparse(e);
-    const a=new Blob([t],{type:'text/csv;charset=utf-8;'});
-    const n=document.createElement('a');
-    n.href=URL.createObjectURL(a);
-    n.download='tax_report_'+new Date().toISOString().split('T')[0]+'.csv';
-    document.body.appendChild(n);
-    n.click();
-    document.body.removeChild(n);
-    setTimeout(()=>URL.revokeObjectURL(n.href),1000);
+    const csv=Papa.unparse(data);
+    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const link=document.createElement('a');
+    link.href=URL.createObjectURL(blob);
+    link.download='tax_report_'+new Date().toISOString().split('T')[0]+'.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(link.href),1000);
   }catch(e){
     console.error(e);
     alert('Download failed: '+e.message);
@@ -485,32 +517,32 @@ function downloadReport(){
 
 async function downloadMonthly(){
   try{
-    const e=new JSZip();
-    const t=[...new Set(allTransactions.map(e=>e.month))];
-    if(t.length===0){
+    const zip=new JSZip();
+    const months=[...new Set(allTransactions.map(t=>t.month))];
+    if(months.length===0){
       alert('No transactions to download');
       return;
     }
-    t.forEach(t=>{
-      const a=allTransactions.filter(e=>e.month===t&&e.isDeductible);
-      if(a.length>0){
-        const n=Papa.unparse(a.map(e=>({
-          Date:e.date,
-          Merchant:e.merchant,
-          Amount:e.amount,
-          Category:e.category
+    months.forEach(month=>{
+      const data=allTransactions.filter(t=>t.month===month&&t.isDeductible);
+      if(data.length>0){
+        const csv=Papa.unparse(data.map(t=>({
+          Date:t.date,
+          Merchant:t.merchant,
+          Amount:t.amount,
+          Category:t.category
         })));
-        e.file(t.replace(/\s/g,'_')+'_deductions.csv',n);
+        zip.file(month.replace(/\s/g,'_')+'_deductions.csv',csv);
       }
     });
-    const a=await e.generateAsync({type:'blob'});
-    const n=document.createElement('a');
-    n.href=URL.createObjectURL(a);
-    n.download='monthly_reports_'+new Date().toISOString().split('T')[0]+'.zip';
-    document.body.appendChild(n);
-    n.click();
-    document.body.removeChild(n);
-    setTimeout(()=>URL.revokeObjectURL(n.href),1000);
+    const content=await zip.generateAsync({type:'blob'});
+    const link=document.createElement('a');
+    link.href=URL.createObjectURL(content);
+    link.download='monthly_reports_'+new Date().toISOString().split('T')[0]+'.zip';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(link.href),1000);
   }catch(e){
     console.error(e);
     alert('Download failed: '+e.message);
